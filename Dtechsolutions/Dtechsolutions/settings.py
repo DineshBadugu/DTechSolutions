@@ -34,7 +34,7 @@ SECRET_KEY = 'django-insecure-llo@_c$ni=0fo@f%s3c%*0+$5t#9!l-6%np0hlc=7vf=1m@wo8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -85,9 +85,13 @@ WSGI_APPLICATION = 'Dtechsolutions.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+         'NAME': env('db_username'),
+         'USER': 'postgres',
+         'PASSWORD': env('db_password'),
+         'HOST': '127.0.0.1',
+         'PORT': '5432',
+    },
 }
 
 
@@ -139,3 +143,23 @@ STATICFILES_DIRS = (
 )
 
 #STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
+SITE_ID = 1
+ACCOUNT_DEFAULT_HTTP_PROTOCOL='http' 
+
+#email sending with smatp
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'badugudinesh94@gmail.com'
+EMAIL_HOST_PASSWORD = 'bqudzklawtmskykk'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+# EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_USE_SSL = False

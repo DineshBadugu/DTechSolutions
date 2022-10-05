@@ -36,29 +36,94 @@
         </div>
 
         <div class="col-lg-8 mt-5 mt-lg-0">
-
-          <form action="forms/contact.php" method="post" role="form" class="php-email-form" data-aos="fade-left">
+          <form id="" action="/contact/"  name="contact-form" method="POST" data-aos="fade-left">
+            {% csrf_token %}
+            {% for message in messages %}
+            {% if message.tags == 'success' %}
+            <!-- sweetalert js -->
+            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script>
+              var m = "{{ message }}";
+              Swal.fire({
+                icon: 'success',
+                iconHtml: '<i class="fa fa-check" aria-hidden="true"></i>',
+                text: m,
+                confirmButtonColor: '#33ca7f',
+                color: '#000',
+                background: '#fff',
+                allowEscapeKey: false,
+                showClass: {
+                  popup: 'my-icon'                     // disable popup animation css
+                },
+              });
+            </script>
+          {% else %}
+          <!-- sweetalert js -->
+          <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+          <script>
+            var m = "{{ message }}";
+            Swal.fire({
+              icon: 'error',
+              iconHtml: '<i class="fa fa-warning"></i>',
+              text: m,
+              confirmButtonColor: '#fff',
+              color: '#000',
+              background: '#fff',
+              allowEscapeKey: false,
+              showClass: {
+                popup: 'my-icon'                     // disable popup animation css
+              },
+            });
+          </script>
+          
+    {% endif %}
+            
+            {% endfor %}
+            <!--Grid row-->
             <div class="row">
-              <div class="col-md-6 form-group">
-                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-              </div>
-              <div class="col-md-6 form-group mt-3 mt-md-0">
-                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-              </div>
+
+                <!--Grid column-->
+                <div class="col-md-6">
+                    <div class="md-form form-group mb-3">
+                        <input type="text" id="name" name="name" class="form-control" placeholder="Your name" required>
+                    </div>
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-md-6">
+                    <div class="md-form form-group mb-3">
+                        <input type="text" id="email" name="email" class="form-control" placeholder="your email" required>
+                    </div>
+                </div>
+                <!--Grid column-->
+
             </div>
-            <div class="form-group mt-3">
-              <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+            <!--Grid row-->
+
+            <!--Grid row-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="md-form form-group mb-3">
+                        <input type="text" id="subject" name="subject" class="form-control" placeholder='subject' required>
+                    </div>
+                </div>
             </div>
-            <div class="form-group mt-3">
-              <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+            <!--Grid row-->
+           
+            <!--Grid row-->
+            <div class="row">
+                <!--Grid column-->
+                <div class="col-md-12">
+                    <div class="md-form form-group mb-3">
+                        <textarea type="text" id="message" name="message" rows="4" class="form-control md-textarea" placeholder='Your message' required></textarea>
+                    </div>
+                  <div class="text-center"><button type="submit" class="email-btn">Send Message</button></div>
+                </div>
             </div>
-            <div class="my-3">
-              <div class="loading">Loading</div>
-              <div class="error-message"></div>
-              <div class="sent-message">Your message has been sent. Thank you!</div>
-            </div>
-            <div class="text-center"><button type="submit">Send Message</button></div>
-          </form>
+            <!--Grid row-->
+
+        </form>
 
         </div>
 
@@ -66,4 +131,5 @@
 
     </div>
   </section>
+  
 {% endblock %}
