@@ -12,10 +12,10 @@
 #install env
 #pip install virtualenv
 # create virtual environment
-#python -m venv env-dt7
+#python -m venv env-dts
 
 # activate virtual environment
-#env-dinesh\Scripts\activate
+#env-dts\Scripts\activate
 
 # install libs
 pip freeze > requirements.txt 
