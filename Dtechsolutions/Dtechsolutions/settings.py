@@ -10,13 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
-import environ
+# import environ
 from pathlib import Path
 
 
 #create .env file 
-env = environ.Env()
-environ.Env.read_env()
+# env = environ.Env()
+# environ.Env.read_env()
 
 # ex:env('email_username')
 
@@ -85,13 +85,17 @@ WSGI_APPLICATION = 'Dtechsolutions.wsgi.application'
 
 DATABASES = {
     'default': {
-         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-         'NAME': env('db_username'),
-         'USER': 'postgres',
-         'PASSWORD': env('db_password'),
-         'HOST': '127.0.0.1',
-         'PORT': '5432',
-    },
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+    # 'default': {
+    #      'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #      'NAME': env('db_username'),
+    #      'USER': 'postgres',
+    #      'PASSWORD': env('db_password'),
+    #      'HOST': '127.0.0.1',
+    #      'PORT': '5432',
+    # },
 }
 
 
